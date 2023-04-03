@@ -7,6 +7,7 @@ export interface IShare {
 }
 
 export interface IExpense extends IBaseSchema {
+  groupId: string;
   title?: string;
   createdByUserId: string;
   paidByUserId: string;

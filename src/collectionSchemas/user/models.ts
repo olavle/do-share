@@ -1,4 +1,4 @@
-import { IBaseSchema } from '../../types/root';
+import { IBaseSchema, IBasicCollection } from '../../types/root';
 
 export interface IUserProfile {
   firstName: string;
@@ -12,8 +12,4 @@ export interface IUser extends IBaseSchema {
 
 export interface IUserInput extends IUserProfile {}
 
-export interface IUserCollection {
-  findOne: (id: string) => Promise<IUser | undefined>;
-  findAll: () => Promise<IUser[]>;
-  create: (input: IUserInput) => Promise<IUser>;
-}
+export type TUserCollection = IBasicCollection<IUser, IUserInput>;

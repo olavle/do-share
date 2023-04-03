@@ -1,13 +1,10 @@
 import { IContext } from '../../context/models';
-import { IUser, IUserInput } from '../../collectionSchemas/user/models';
+import { IUserInput } from '../../collectionSchemas/user/models';
+import { usersResolver } from './user';
 
 export const resolvers = {
   Query: {
-    users: async (
-      _root: IUser,
-      _args: any,
-      context: IContext
-    ): Promise<IUser[]> => await context.collection.user.findAll(),
+    users: usersResolver,
   },
   Mutation: {
     addUser: async (_root: any, input: IUserInput, context: IContext) =>

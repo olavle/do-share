@@ -1,4 +1,4 @@
-import { IUserCollection } from '../collectionSchemas/user/models';
+import { TUserCollection } from '../collectionSchemas/user/models';
 
 export interface IContext {
   token?: string;
@@ -6,5 +6,5 @@ export interface IContext {
 }
 
 export interface ICollection {
-  user: IUserCollection;
+  user: TUserCollection;
 }
