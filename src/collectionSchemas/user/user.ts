@@ -1,17 +1,15 @@
-import { Schema, model } from 'mongoose';
+import { model } from 'mongoose';
 import { createBasicCollection, createMongoSchema } from '../lib';
-import { IUser, IUserProfile } from './models';
+import { IUser } from './models';
 
-const userProfile = new Schema<IUserProfile>({
+const userProfile = {
   firstName: String,
   lastName: String,
   email: String,
-});
+};
 
 const UserSchema = createMongoSchema<IUser>({
-  profile: {
-    type: userProfile,
-  },
+  profile: userProfile,
 });
 
 export const UserModel = model<IUser>('User', UserSchema);

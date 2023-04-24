@@ -10,6 +10,7 @@ export const createMongoSchema = <T extends IBaseSchema>(
     },
     {
       timestamps: true,
+      versionKey: false,
     }
   );
 
@@ -21,7 +22,7 @@ export const createBasicCollection = <T, I>(
 ): IBasicCollection<T, I> => ({
   create: (input) =>
     new Model({
-      input,
+      ...input,
     }).save(),
   findAll: () => Model.find({}),
   findOne: (id) => findOne(id, Model),

@@ -1,3 +1,4 @@
+import { TGroupCollection } from '../collectionSchemas/group/models';
 import { TUserCollection } from '../collectionSchemas/user/models';
 
 export interface IContext {
@@ -7,4 +8,5 @@ export interface IContext {
 
 export interface ICollection {
   user: TUserCollection;
+  group: TGroupCollection;
 }

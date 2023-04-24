@@ -1,6 +1,6 @@
 export interface IBaseSchema {
   _id?: string;
-  createdAt?: string;
+  createdAt?: Date;
 }
 
 export interface IBasicCollection<T, I> {
