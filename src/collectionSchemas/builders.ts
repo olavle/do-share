@@ -18,6 +18,10 @@ export const createMongoSchema = <T extends IBaseSchema>(
 const findOne = async <T>(id: string, Model: Model<T>) =>
   (await Model.find({ _id: id })).at(0) ?? undefined;
 
+/**
+ * Need to extract the functions into separate functions
+ * just to make this less of a cluster fuck
+ */
 export const createBasicCollection = <T, I extends Record<string, any>>(
   Model: Model<T>
 ): IBasicCollection<T, I> => ({

@@ -1,3 +1,10 @@
+export const BASE_SCHEMA_ITEMS = {
+  _id: 1,
+  createdAt: 1,
+} as const;
+
+export type TBaseSchema = typeof BASE_SCHEMA_ITEMS;
+
 export interface IBaseSchema {
   _id?: string;
   createdAt?: Date;

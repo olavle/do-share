@@ -13,3 +13,5 @@ export interface IUser extends IBaseSchema {
 export interface IUserInput extends IUserProfile {}
 
 export type TUserCollection = IBasicCollection<IUser, IUserInput>;
+
+export type TJwtUser = Pick<IUser, "_id"> & Pick<IUser["profile"], "email">;

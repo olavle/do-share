@@ -5,7 +5,7 @@ import { createBasicCollection, createMongoSchema } from "../builders";
 const GroupSchema = createMongoSchema<IGroup>({
   name: String,
   createdById: String,
-  memeberIds: [String],
+  memberIds: [String],
 });
 
 const GroupModel = model<IGroup>("Group", GroupSchema);

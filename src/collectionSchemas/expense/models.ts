@@ -1,4 +1,8 @@
-import { IBaseSchema } from '../../types/root';
+import {
+  IBaseSchema,
+  IBasicCollection,
+  BASE_SCHEMA_ITEMS,
+} from "../../types/root";
 
 export interface IShare {
   userId: string;
@@ -14,3 +18,7 @@ export interface IExpense extends IBaseSchema {
   totalAmount: number;
   shares: IShare[];
 }
+
+export type TExpenseInput = Omit<IExpense, keyof typeof BASE_SCHEMA_ITEMS>;
+
+export type TExpenseCollection = IBasicCollection<IExpense, TExpenseInput>;

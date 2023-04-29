@@ -1,11 +1,11 @@
-import { IBaseSchema, IBasicCollection } from '../../types/root';
+import { IBaseSchema, IBasicCollection } from "../../types/root";
 
 export interface IGroup extends IBaseSchema {
   name: string;
   createdById: string;
-  memeberIds: string[];
+  memberIds: string[];
 }
 
-export type TGroupInput = Pick<IGroup, 'memeberIds' | 'name'>;
+export type TGroupInput = Pick<IGroup, "memberIds" | "name">;
 
 export type TGroupCollection = IBasicCollection<IGroup, TGroupInput>;

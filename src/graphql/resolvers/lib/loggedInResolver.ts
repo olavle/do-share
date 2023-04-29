@@ -1,12 +1,12 @@
-import { IContext } from '../../../context/models';
+import { IContext } from "../../../context/models";
 
 export const loggedInResolver =
   <T, I, R>(resolverFunc: (root: T, input: I, context: IContext) => R) =>
   (root: T, input: I, context: IContext) => {
-    const token = context.token;
+    const user = context.identity.user;
 
-    if (!token) {
-      throw new Error('no token');
+    if (!user) {
+      throw new Error("Unauthorized");
     }
 
     return resolverFunc(root, input, context);

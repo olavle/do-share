@@ -1,8 +1,5 @@
 import R from "ramda";
-
-type FlatObject<T> = T extends Record<string, any>
-  ? { [K in keyof T & string as `${string & K}`]: FlatObject<T[K]> }
-  : T;
+import { FlatObject } from "./lib.models";
 
 export const toMongoFields = <T extends Record<string, any>>(
   obj: T
