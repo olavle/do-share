@@ -1,29 +1,22 @@
-import { Model, Schema, SchemaTypeOptions } from 'mongoose';
-import { IBaseSchema, IBasicCollection } from '../types/root';
+import R from "ramda";
 
-export const createMongoSchema = <T extends IBaseSchema>(
-  input: Record<keyof Omit<T, '_id' | 'createdAt'>, SchemaTypeOptions<T>>
-) =>
-  new Schema<T>(
-    {
-      ...input,
-    },
-    {
-      timestamps: true,
-      versionKey: false,
-    }
-  );
+type FlatObject<T> = T extends Record<string, any>
+  ? { [K in keyof T & string as `${string & K}`]: FlatObject<T[K]> }
+  : T;
 
-const findOne = async <T>(id: string, Model: Model<T>) =>
-  (await Model.find({ _id: id })).at(0) ?? undefined;
+export const toMongoFields = <T extends Record<string, any>>(
+  obj: T
+): FlatObject<T> => {
+  const reducer = (prefix: string, obj: Record<string, any>) =>
+    Object.entries(obj).reduce((acc, [key, value]) => {
+      const fullKey = prefix ? `${prefix}.${key}` : key;
+      if (value && typeof value === "object") {
+        Object.assign(acc, reducer(fullKey, value));
+      } else {
+        acc = R.assocPath([fullKey], value)(acc) as FlatObject<T>; // not sure how safe this is ":D" but has to do for now. "I'll refactor it __later__"
+      }
+      return acc;
+    }, {} as FlatObject<T>);
 
-export const createBasicCollection = <T, I>(
-  Model: Model<T>
-): IBasicCollection<T, I> => ({
-  create: (input) =>
-    new Model({
-      ...input,
-    }).save(),
-  findAll: () => Model.find({}),
-  findOne: (id) => findOne(id, Model),
-});
+  return reducer("", obj);
+};

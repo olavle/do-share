@@ -19,6 +19,15 @@ const user = `
     input UserInput {
         profile: ProfileInput!
     }
+
+    input ProfilePatchInput {
+        firstName: String
+        lastName: String
+    }
+
+    input UserPatchInput {
+        profile: ProfilePatchInput
+    }
 `;
 
 export default [user];

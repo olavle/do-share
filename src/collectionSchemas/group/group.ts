@@ -1,6 +1,6 @@
-import { model } from 'mongoose';
-import { createBasicCollection, createMongoSchema } from '../lib';
-import { IGroup } from './models';
+import { model } from "mongoose";
+import { IGroup } from "./models";
+import { createBasicCollection, createMongoSchema } from "../builders";
 
 const GroupSchema = createMongoSchema<IGroup>({
   name: String,
@@ -8,5 +8,5 @@ const GroupSchema = createMongoSchema<IGroup>({
   memeberIds: [String],
 });
 
-const GroupModel = model<IGroup>('Group', GroupSchema);
+const GroupModel = model<IGroup>("Group", GroupSchema);
 export const groupCollection = createBasicCollection(GroupModel);

@@ -1,4 +1,4 @@
-import { IBaseSchema, IBasicCollection } from '../../types/root';
+import { IBaseSchema, IBasicCollection } from "../../types/root";
 
 export interface IUserProfile {
   firstName: string;

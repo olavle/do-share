@@ -1,4 +1,6 @@
 {
+  "ts-node": {"files": true},
+  "files": ["global.d.ts", "src/index.ts"],
   "compilerOptions": {
     "target": "ES6",
     "outDir": "./build/",
@@ -8,6 +10,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+  },
 }
